@@ -31,6 +31,7 @@ require_once "config.php";
             $(function(){
             $('.show_GO').hide();
             $('.show_IU').hide();
+           
             $("#usr_category").change(function(){
                     var optionValue = $("#usr_category").val();
                     //alert(optionValue);
@@ -38,18 +39,23 @@ require_once "config.php";
                     {
                         $('.show_GO').show();
                         $('.show_IU').hide();
+                     
                     }
                     else if(optionValue === 'IU')
                     {
                         $('.show_GO').hide();
                         $('.show_IU').show();
+                       
                     }
+                    
                     else
                     {
                         $('.show_GO').hide();
                         $('.show_IU').hide();
+                 
                     }
             });
+            
              $("#Pincode").keypress(function (e) {
                 //if the letter is not digit then display error and don't type anything
                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -173,10 +179,10 @@ require_once "config.php";
                                                             else
                                                             {
                                                                 $('#address_err').empty();
-                                                                if(State === '')
+                                                                if(State === 'Select')
                                                                 {
                                                                     $('#address_err').empty();
-                                                                    $('#address_err').append('<span style="color:red;">Enter State</span>');
+                                                                    $('#address_err').append('<span style="color:red;">Select State</span>');
                                                                 }
                                                                 else
                                                                 {
@@ -259,6 +265,7 @@ require_once "config.php";
               $('#Back').click(function() {
               window.location.href="index.php";
               });
+             
                $('#register').click(function() {
                 var GO_Name  = $.trim($('#GO_Name').val());
                 var GO_Pincode = $.trim($('#GO_Pincode').val());
@@ -363,12 +370,13 @@ require_once "config.php";
                         <option value="Select" selected="selected">Select</option>
                         <option value="IU">Individual User</option>
                         <option value="GO">Government Official</option>
+                        
 
                     </select>
                 </div>
         <div class="wrapper" style="margin:0 auto;">
+                
                 <div class="show_GO">
-                    
                     <h4 style="color:#b5651d;">Government Official/ Nodal Incharge Registration</h4>
                     <p><span class="error">* required field</span></p>
                     <table class="table">
@@ -437,7 +445,27 @@ require_once "config.php";
                                
                                 <input type="text" id="City" name="City" placeholder="Village/ City" class="form-control" ><br>
                               <input type="text" id="District" name="District" placeholder="District" class="form-control" ><br>
-                              <input type="text" id="State" name="State" placeholder="State" class="form-control" ><br>
+<!--                              <input type="text" id="State" name="State" placeholder="State" class="form-control" >-->
+                              <label>State: </label> <select id="State" name="State">
+                                    <option value="Select" selected="selected" >Select</option>
+                                    <?php
+                                    require_once "config.php";
+
+                                    $sql = "SELECT * FROM state_master order by STATE_NAME asc ";
+                                    $result = mysqli_query($MyConnection, $sql);
+
+                                     if (mysqli_num_rows($result) > 0) 
+                                     {
+                                        while($row = mysqli_fetch_assoc($result)) 
+                                        {
+                                            echo "<option value='".$row['STATE_NAME']."'>" . $row['STATE_NAME'] . "</option>";
+                                        }
+                                     } 
+                                     
+                                     mysqli_close($MyConnection);
+                                    ?>
+                              </select>
+                              <br>
                               <input type="text" id="Pincode" name="Pincode" placeholder="Pincode" class="form-control" >
 
                             </td>
@@ -476,45 +504,6 @@ require_once "config.php";
                             </td>
                             <td id="iu_ration_err"></td>
                         </tr>
-<!--                        <tr>
-                            <td>Add Family Details<span class="error"> * </span></td>
-                            <td>
-                                <table  class="table">
-                                    <thead>
-                                    <tr>
-                                    <td>
-                                        Name
-                                    </td>
-                                    <td>Relationship</td>
-                                    <td>is Reside in same location?</td>
-                                    <td>Action</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <input type="text" id="FM_name" name="FM_name" placeholder="Name" class="form-control">
-                                            </td>
-                                            <td>
-                                                <input type="text" id="FM_Relationship" name="FM_Relationship" placeholder="Relationship" class="form-control">
-                                            </td>
-                                            <td>
-                                                <select id="is_reside" name ="is_reside">
-                                    
-                                                <option value="Y" selected="selected">Yes</option>
-                                                <option value="N">No</option>
-                                            </select>
-                                            </td>
-                                            <td><input type="button" class="btn btn-primary" id="Add_more" name="Add_more" value="+" style="background:#b5651d;border:#b5651d;"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                                
-                                
-                            </td>
-                        
-                        </tr>-->
                         <tr>
                             <td colspan="2">
                                 <input type="submit" class="btn btn-primary" id="iu_register" name="iu_register" value="Register" style="background:#b5651d;border:#b5651d;">
@@ -523,6 +512,7 @@ require_once "config.php";
                         </tr>
                     </table>
                 </div> 
+                
             
         </div>    
     </body>

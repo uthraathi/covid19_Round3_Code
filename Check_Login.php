@@ -6,14 +6,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 $status=$msg="";
-//echo $Mobile ;
-//define('DB_SERVER', 'localhost');
-//define('DB_USERNAME', 'root');
-//define('DB_PASSWORD', '');
-//define('DB_NAME', 'eshopping');
-// 
-///* Attempt to connect to MySQL database */
-//$MyConnection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
 if($category === 'GO')
 {
     $sql = "SELECT * FROM govt_official_registration WHERE GOVT_OFFICIAL_ID = '$username' and PHONE_NUMBER= '$password'";
@@ -21,6 +14,10 @@ if($category === 'GO')
 else if ($category === 'IU')
 {
     $sql = "SELECT * FROM user_registration WHERE user_id  = '$username' and mobile_number= '$password'";
+}
+else if ($category === 'RS')
+{
+    $sql = "SELECT * FROM ration_shop_register WHERE RS_INC_ID  = '$username' and mobile_number= '$password'";
 }
 else
 {
@@ -49,6 +46,13 @@ else
             $_SESSION['FAMILY_TYPE'] = $row['family_type'];
             
         }
+        else if ($category === 'RS')
+        {
+            $_SESSION['User_Name']= $row['RS_INC_NAME'];
+            $_SESSION['PINCODE'] = $row['PINCODE'];
+            $_SESSION['FAMILY_TYPE'] = "";
+            
+        }
         else
         {
             $_SESSION['User_Name']= $row['SHOP_OWNER_NAME'];
@@ -72,12 +76,15 @@ if (mysqli_num_rows($result_zip) === 1)
    {
        $_SESSION['Latitude'] = $row_zip['Latitude'];
        $_SESSION['Longitude'] = $row_zip['Longitude'];
+       $_SESSION['STATE_CODE'] = $row_zip['STATE_CODE'];
+       
    }
 }
 else
 {
      $_SESSION['Latitude'] = "";
      $_SESSION['Longitude'] = "";
+     $_SESSION['STATE_CODE'] = "";
 }
  
  mysqli_close($MyConnection);

@@ -106,7 +106,7 @@ if(!isset($_SESSION['user_id']))
             </tr>
             <tr>
                 <td style="color:black;">User Category: </td>
-                <td><?php if ($_SESSION['user_category'] === "IU") echo "Individual User"; else if($_SESSION['user_category'] === "GO") echo "Government Official" ; else echo "Shop Keeper"; ?></td>
+                <td><?php if ($_SESSION['user_category'] === "IU") echo "Individual User"; else if($_SESSION['user_category'] === "GO") echo "Government Official" ; else if($_SESSION['user_category'] === "RS") echo "Ration Shop" ; else echo "Shop Keeper"; ?></td>
             </tr>
         </table>
     </body>

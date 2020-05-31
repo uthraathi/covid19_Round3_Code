@@ -93,8 +93,11 @@ if(!isset($_SESSION['user_id']))
 <div class="navbar">
   <a href="IU_Shop_by_Category.php">Purchase Online</a>
   <a href="IU_Order_Status.php">Order Status</a>
-  <a href="IU_Order_His.php">Previous Order History</a>
-  <a href="Add_Family.php">Add Family Details</a>
+  <a href="IU_Order_His.php">Order History</a>
+  <a href="IU_Ration_Shop.php">Ration Online</a>
+  <a href="IU_RS_Status.php">Ration Order Status</a>
+  <a href="IU_RS_Order_His.php">Ration Order History</a>
+  <a href="Add_Family.php">Family Details</a>
   <a href="About_User.php">About User</a>
   <a href="Logout.php">Logout</a>
 </div>
@@ -105,7 +108,7 @@ if(!isset($_SESSION['user_id']))
             </tr>
             <tr>
                 <td style="color:black;">User Category: </td>
-                <td><?php if ($_SESSION['user_category'] === "IU") echo "Individual User"; else if($_SESSION['user_category'] === "GO") echo "Government Official" ; else echo "Shop Keeper"; ?></td>
+                <td><?php if ($_SESSION['user_category'] === "IU") echo "Individual User"; else if($_SESSION['user_category'] === "GO") echo "Government Official" ; else if($_SESSION['user_category'] === "RS") echo "Ration Shop" ; else echo "Shop Keeper"; ?></td>
             </tr>
         </table>
 

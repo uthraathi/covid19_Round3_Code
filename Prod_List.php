@@ -20,7 +20,8 @@ require_once 'Go_Menu.php';
     background: white url("img/ui-anim_basic_16x16.gif") right center no-repeat;
   }
         </style>
-         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<!--         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>-->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type="text/javascript">
             $(function(){

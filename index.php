@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <?php
 require_once "config.php";
 ?>
+
+
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -71,6 +69,10 @@ require_once "config.php";
                                          {
                                          window.location.href="addproduct_SK.php";
                                          }
+                                         else if (usr_category === 'RS')
+                                         {
+                                         window.location.href="addproduct_RS.php";
+                                         }
                                          else
                                          {
                                              window.location.href="IU_Shop_by_Category.php";
@@ -106,6 +108,7 @@ require_once "config.php";
                                         <option value="IU">Individual User</option>
                                         <option value="GO">Government Official</option>
                                         <option value="SK">Shop Keeper</option>
+                                        <option value="RS">Ration Shop</option>
                                     </select>
 
                             </td>

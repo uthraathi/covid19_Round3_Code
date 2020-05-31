@@ -90,18 +90,16 @@ if(!isset($_SESSION['user_id']))
     </head>
     <body>
          <div class="navbar">
-  <a href="Product_Add.php">Product Add</a>
-  <a href="Prod_List.php">Product List</a>
-  <a href="Shop_Keepe_Reg.php">Shop Keeper Add</a>
-  <a href="Shop_Keepe_List.php">Shop Keeper List</a>
-  <a href="RS_Add.php">Ration Shop Add</a>
-  <a href="Ration_Shop_List.php">Ration Shop List</a>
-  <a href="Ration_Product_Add.php">Ration Product Add</a>
-  <a href="Ration_Product_List.php">Ration Product List</a>
+  <a href="addproduct_RS.php">Product Add</a>
+  <a href="Prod_List_RS.php">Product List</a>
+  <a href="RS_Service_Time.php">Set Service Time</a>
+  <a href="RS_Active_Order.php">Active Order List</a>
+  <a href="RS_Order_History.php">Order History</a>
+  <a href="About_RS_Shop.php">About Shop</a>
   <a href="Logout.php">Logout</a>
-  
+
 </div> 
-           <table style="float: right;font-size:18px;color: orchid;font-weight:bold;margin-right:20px;">
+        <table style="float: right;font-size:18px;color: orchid;font-weight:bold;margin-right:20px;">
             <tr>
                 <td style="color:black;">User Name: </td>
                 <td> <?php echo $_SESSION['User_Name']?></td>

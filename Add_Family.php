@@ -147,10 +147,10 @@ require_once 'IU_Menu.php';
                                                             else
                                                             {
                                                                 $('#address_err').empty();
-                                                                if(is_reside === 'N' && State === '')
+                                                                if(is_reside === 'N' && State === 'Select')
                                                                 {
                                                                     $('#address_err').empty();
-                                                                    $('#address_err').append('<span style="color:red;">Enter State</span>');
+                                                                    $('#address_err').append('<span style="color:red;">Select State</span>');
                                                                 }
                                                                 else
                                                                 {
@@ -286,7 +286,27 @@ require_once 'IU_Menu.php';
                                
                                 <input type="text" id="City" name="City" placeholder="Village/ City" class="form-control" value=""><br>
                               <input type="text" id="District" name="District" placeholder="District" class="form-control"  value=""><br>
-                              <input type="text" id="State" name="State" placeholder="State" class="form-control"  value=""><br>
+<!--                              <input type="text" id="State" name="State" placeholder="State" class="form-control"  value="">-->
+                              <label>State: </label> <select id="State" name="State">
+                                    <option value="Select" selected="selected" >Select</option>
+                                    <?php
+                                    require_once "config.php";
+
+                                    $sql = "SELECT * FROM state_master order by STATE_NAME asc ";
+                                    $result = mysqli_query($MyConnection, $sql);
+
+                                     if (mysqli_num_rows($result) > 0) 
+                                     {
+                                        while($row = mysqli_fetch_assoc($result)) 
+                                        {
+                                            echo "<option value='".$row['STATE_NAME']."'>" . $row['STATE_NAME'] . "</option>";
+                                        }
+                                     } 
+                                     
+                                     mysqli_close($MyConnection);
+                                    ?>
+                              </select>
+                              <br>
                               <input type="text" id="Pincode" name="Pincode" placeholder="Pincode" class="form-control" maxlength="6" value="">
 
                             </td>

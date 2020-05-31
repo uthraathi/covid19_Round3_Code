@@ -1,5 +1,5 @@
 <?php
-require_once 'IU_Menu.php';
+require_once 'RS_Menu.php';
 $user_id = $_SESSION['user_id'];
 date_default_timezone_set('Asia/Kolkata'); 
 
@@ -28,7 +28,7 @@ $From_Date = date('Y-m-d',strtotime($To_date) - 2592000);
                     var vartr = $(this).closest('tr');
                     var order_id = vartr.find('input[id$="order_id"]').val();
                     //alert("Order ID: "+order_id);
-                    window.location.href= "View_Order_Invoice.php?order_id="+order_id;
+                    window.location.href= "View_RS_Order_Invoice.php?order_id="+order_id;
 
                 });
             });
@@ -50,7 +50,7 @@ $From_Date = date('Y-m-d',strtotime($To_date) - 2592000);
                 <tr style="background:yellowgreen;color:black;font-size:16px;font-weight:bold;">
                     <td>S.No</td>
                     <td>Order ID</td>
-                    <td>Shop Name</td>
+                    <td>Ration Shop Details</td>
                     <td>Order Date</td>
                     <td>Delivery Option</td>
                     <td>Delivery Time</td>
@@ -63,7 +63,7 @@ $From_Date = date('Y-m-d',strtotime($To_date) - 2592000);
                 $Service_time = "";
 
 
-                $sql = "SELECT u.*,s.shop_name,s.HD_Service_Time,s.Service_Time FROM user_order u,shop_keeper_registration s where u.USER_ID='$user_id' and u.ORDER_STATUS = 4 and s.SK_UNIQUE_ID = u.SHOP_ID order by u.ORDER_DATE desc";
+                $sql = "SELECT u.*,s.BUILD_NO,s.STREET,s.CITY,s.DISTRICT,s.STATE,s.PINCODE,s.HD_Service_Time,s.Service_Time FROM ration_shop_order u,ration_shop_register s where u.SHOP_ID='$user_id' and u.ORDER_STATUS > 2 and s.RS_INC_ID = u.SHOP_ID order by u.ORDER_DATE desc";
 
 
                  $result = mysqli_query($MyConnection, $sql);
@@ -93,7 +93,8 @@ $From_Date = date('Y-m-d',strtotime($To_date) - 2592000);
                     <input type="hidden" id="obj[<?php echo $index?>].order_id" name="obj[<?php echo $index?>].order_id" value="<?php echo $row['ORDER_ID']?>" >
                     
                     </td>
-                    <td><?php echo $row['shop_name']?></td>
+                    <td><?php echo $row['BUILD_NO'] .", ".$row['STREET'].", <br>". $row['CITY'].", <br>". 
+                                $row['DISTRICT'].", <br>". $row['STATE']." - ". $row['PINCODE']?></td>
                     <td><?php echo $order_date?></td>
                    <td><?php if ($row['delivery_option'] === 'H') echo 'Home Delivery'; else echo 'Pick up at Store';?></td>
                     <td><?php echo $delivery_time." - ". $delivery_totime    ?></td>

@@ -162,10 +162,10 @@ require_once 'Go_Menu.php';
                                                             else
                                                             {
                                                                 $('#address_err').empty();
-                                                                if(State === '')
+                                                                if(State === 'Select')
                                                                 {
                                                                     $('#address_err').empty();
-                                                                    $('#address_err').append('<span style="color:red;">Enter State</span>');
+                                                                    $('#address_err').append('<span style="color:red;">Select State</span>');
                                                                 }
                                                                 else
                                                                 {
@@ -233,15 +233,9 @@ require_once 'Go_Menu.php';
                                     <option value="Select" selected="selected">Select</option>
                                     <?php
                                     require_once "config.php";
-//                                    define('DB_SERVER', 'localhost');
-//                                    define('DB_USERNAME', 'root');
-//                                    define('DB_PASSWORD', '');
-//                                    define('DB_NAME', 'eshopping');
-//
-//                                    /* Attempt to connect to MySQL database */
-//                                    $MyConnection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
                                     
-                                    $sql = "SELECT category_name FROM product_category_master";
+                                    $sql = "SELECT distinct(category_name) as category_name FROM product_category_master";
                                     
                                     
                                      $result = mysqli_query($MyConnection, $sql);
@@ -254,7 +248,7 @@ require_once 'Go_Menu.php';
                                         }
                                      } 
                                      
-                                     mysqli_close($MyConnection);
+                                    // mysqli_close($MyConnection);
                                     ?>
                                 </select>
 
@@ -312,7 +306,26 @@ require_once 'Go_Menu.php';
                                
                                 <input type="text" id="City" name="City" placeholder="Village/ City" class="form-control" ><br>
                               <input type="text" id="District" name="District" placeholder="District" class="form-control" ><br>
-                              <input type="text" id="State" name="State" placeholder="State" class="form-control" ><br>
+                              <label>State: </label> <select id="State" name="State">
+                                    <option value="Select" selected="selected" >Select</option>
+                                    <?php
+                                    //require_once "config.php";
+
+                                    $sql = "SELECT * FROM state_master order by STATE_NAME asc ";
+                                    $result = mysqli_query($MyConnection, $sql);
+
+                                     if (mysqli_num_rows($result) > 0) 
+                                     {
+                                        while($row = mysqli_fetch_assoc($result)) 
+                                        {
+                                            echo "<option value='".$row['STATE_NAME']."'>" . $row['STATE_NAME'] . "</option>";
+                                        }
+                                     } 
+                                     
+                                     mysqli_close($MyConnection);
+                                    ?>
+                              </select><br>
+<!--                              <input type="text" id="State" name="State" placeholder="State" class="form-control" ><br>-->
                               <input type="text" id="Pincode" name="Pincode" placeholder="Pincode" class="form-control"  maxlength="6">
 
                             </td>

@@ -24,13 +24,6 @@ require_once 'IU_Menu.php';
                
                 <?php
                 require_once "config.php";
-//                define('DB_SERVER', 'localhost');
-//                define('DB_USERNAME', 'root');
-//                define('DB_PASSWORD', '');
-//                define('DB_NAME', 'eshopping');
-//
-//                /* Attempt to connect to MySQL database */
-//                $MyConnection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
                 $sql = "SELECT * from user_registration where user_id = ".$_SESSION['user_id']."";
 
@@ -71,6 +64,16 @@ require_once 'IU_Menu.php';
                         echo "<tr>";
                         echo "<td>Ration card</td>";
                         echo "<td>". $row['rationcard'] ."</td>";
+                        echo "</tr>";
+                        
+                        echo "<tr>";
+                        echo "<td>Ration card Type</td>";
+                        echo "<td>". $row['Ration_Card_Type'] ."</td>";
+                        echo "</tr>";
+                        
+                        echo "<tr>";
+                        echo "<td>Gas Count</td>";
+                        echo "<td>". $row['GAS_STOVE_COUNT'] ."</td>";
                         echo "</tr>";
                         
                         echo "<tr>";

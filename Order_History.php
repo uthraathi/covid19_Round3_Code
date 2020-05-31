@@ -50,7 +50,7 @@ $From_Date = date('Y-m-d',strtotime($To_date) - 2592000);
                 <tr style="background:yellowgreen;color:black;font-size:16px;font-weight:bold;">
                     <td>S.No</td>
                     <td>Order ID</td>
-                    <td>Shop Name</td>
+                    <td>Customer Name</td>
                     <td>Order Date</td>
                     <td>Delivery Option</td>
                     <td>Delivery Time</td>
@@ -63,7 +63,7 @@ $From_Date = date('Y-m-d',strtotime($To_date) - 2592000);
                 $Service_time = "";
 
 
-                $sql = "SELECT u.*,s.shop_name,s.HD_Service_Time,s.Service_Time FROM user_order u,shop_keeper_registration s where u.USER_ID='$user_id' and u.ORDER_STATUS = 4 and s.SK_UNIQUE_ID = u.SHOP_ID order by u.ORDER_DATE desc";
+                $sql = "SELECT r.user_name,u.*,s.shop_name,s.HD_Service_Time,s.Service_Time FROM user_order u,shop_keeper_registration s,user_registration r where u.SHOP_ID='$user_id' and u.user_id = r.user_id  and u.ORDER_STATUS > 2 and s.SK_UNIQUE_ID = u.SHOP_ID order by u.ORDER_DATE desc";
 
 
                  $result = mysqli_query($MyConnection, $sql);
@@ -93,7 +93,7 @@ $From_Date = date('Y-m-d',strtotime($To_date) - 2592000);
                     <input type="hidden" id="obj[<?php echo $index?>].order_id" name="obj[<?php echo $index?>].order_id" value="<?php echo $row['ORDER_ID']?>" >
                     
                     </td>
-                    <td><?php echo $row['shop_name']?></td>
+                    <td><?php echo $row['user_name']?></td>
                     <td><?php echo $order_date?></td>
                    <td><?php if ($row['delivery_option'] === 'H') echo 'Home Delivery'; else echo 'Pick up at Store';?></td>
                     <td><?php echo $delivery_time." - ". $delivery_totime    ?></td>
