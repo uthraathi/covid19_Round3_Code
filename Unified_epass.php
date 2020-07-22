@@ -1,10 +1,7 @@
 <?php
 require_once 'IU_Menu.php';
-//session_start();
-//if(!isset($_SESSION['user_id']))
-//{
-//    header('location:index.php');
-//}
+$state_code = $_SESSION['STATE_CODE'];
+$state_name = $_SESSION['STATE_NAME'];
 ?>
 
 <html>
@@ -33,7 +30,12 @@ require_once 'IU_Menu.php';
 			}
 		});
             });
+                
                 $('.state_All').hide();
+                var State = "<?php echo $state_code ?>";
+                $('.'+State).show();
+                $("#State").val(State);
+                $('#State').prop('disabled', true);
                 $("#State").change(function () {
                     var State  = $.trim($('#State').val());
                     if(State !== "Select")
@@ -55,10 +57,10 @@ require_once 'IU_Menu.php';
     </head>
     <body>
         <div class="wrapper" style="margin:0 auto;" >
-            <h2 style="color:#b5651d;">Unified e-Pass</h2>
+            <h2 style="color:#b5651d;">e-Pass</h2>
  <p><span class="error">* required field</span></p>
- <p style="font-weight:bold;">This framework is being used by 17 states of India to provide movement e-Pass services during COVID-19 
-     pandemic.</span>
+<!-- <p style="font-weight:bold;">This framework is being used by 17 states of India to provide movement e-Pass services during COVID-19 
+     pandemic.</span>-->
  <div>
     
     <ol>
@@ -198,6 +200,10 @@ require_once 'IU_Menu.php';
                     </td>
                     <td class="state_All UP" colspan="2">
                         <a href="http://164.100.68.164/upepass2/">ePass Management System by Uttar Pradesh</a>
+                    </td>
+                    <td class="state_All PB" colspan="2">
+                        <a href="https://epasscovid19.pais.net.in/">ePass Management System by Punjab</a><br>
+                        <a href="https://corona.punjab.gov.in/">Punjab Corona Dashboard</a>
                     </td>
                 </tr>
           </table>

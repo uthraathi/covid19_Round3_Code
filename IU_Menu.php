@@ -160,6 +160,26 @@ if(!isset($_SESSION['user_id']))
             </li>
         </ul>
     </li>
+    <li><a href=\"#\">Volunteers <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
+        <ul>
+            <li>
+                <a href="Volunteer_Registration.php">Apply Online</a>
+            </li>
+            <li>
+                <a href="Ind_Volu_Assigned_Work.php">Assigned Work</a>
+            </li>
+        </ul>
+    </li>
+    <li><a href=\"#\">Helping Hands <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
+        <ul>
+            <li>
+                <a href="IU_Relief_Mtrl_Apply.php">Fund Relief Material</a>
+            </li>
+            <li>
+                <a href="IU_Relief_Mtrl_His.php">Previous History</a>
+            </li>
+        </ul>
+    </li>
   <li><a href=\"#\">Personal Info <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
         <ul>
             <li>

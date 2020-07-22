@@ -8,11 +8,11 @@ require_once "config.php";
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>e-Shopping - Login Page</title>
+        <title>Login Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
         <style type="text/css">
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 450px; padding: 20px; }
+        .wrapper{ width: auto;border: 2px solid #b5651d;border-radius: 10px 20px 10px 20px;}
         .error{color: #FF0000;}
         
         </style>
@@ -94,12 +94,19 @@ require_once "config.php";
             });
         </script>
     </head>
-    <body>
+    <body>   
         <div class="wrapper" style="margin:0 auto;" >
-            <h2 style="color:#b5651d;">Login</h2>
-            <p>Please fill in your credentials to login.</p>
-
-            <table class="table">
+            <h1 style="color: brown;  text-shadow: 1px 2px 2px black, 0 0 25px greenyellow, 0 0 5px grey;text-align: center;height:70px;">Punjab District</h1>
+            <table style="border-spacing:20px;border-collapse:separate;">
+                <tr>
+                    <td style="width:50%;">
+                        <img src='/Covid19/27-punjab-home.jpg'  width=100% height='350' alt='' />
+                    </td>
+                    <td style="width:30%;">
+                              <h3 style="color:#b5651d;font-size:30px;text-align:center;">Login</h3>
+            <p style="color:red;font-size:10px;">Please fill in your credentials to login.</p>
+                
+            <table class="table" style="background-image: linear-gradient(to right, white , skyblue);border-spacing:20px;border-collapse:separate;">
                         <tr>
                             <td>User Category<span class="error"> * </span></td>
                             <td style="width:65%;">
@@ -130,13 +137,25 @@ require_once "config.php";
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <input type="submit" id="Login" name="Login" class="btn btn-primary" value="Login" style="background:#b5651d;border:#b5651d;">
+                                <input type="submit" id="Login" name="Login" class="btn btn-primary" value="Login" style="background:#b5651d;border:#b5651d;font-weight:bold;float:right;">
                             </td>
                         </tr>
             </table> 
          
             <p>New user click <a href="register.php">Sign up now</a> to register.</p>
+                    </td>
+                </tr>
+               
+               
+            </table>
+            
+              
+
+     
 
         </div>    
     </body>
+    <footer style="text-align:center;">
+        Copyright © Anna University. All Rights Reserved.
+    </footer>
 </html>

@@ -1,7 +1,7 @@
 <?php
-
 require_once 'Go_Menu.php';
-
+$state_code = $_SESSION['STATE_CODE'];
+$state_name = $_SESSION['STATE_NAME'];
 ?>
 
 <html>
@@ -20,6 +20,10 @@ require_once 'Go_Menu.php';
             <script type="text/javascript">
             $(function()
             {
+                $('#RS_State').val("<?php echo $state_name ?>");
+                $('#RS_State').prop('disabled', true);
+                $('#RS_Pincode').val("<?php echo $_SESSION['PINCODE'] ?>");
+                $('#RS_Pincode').prop('disabled', true);
                  $("#RS_Pincode").keypress(function (e) {
                 //if the letter is not digit then display error and don't type anything
                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {

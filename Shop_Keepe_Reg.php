@@ -1,10 +1,7 @@
 <?php
 require_once 'Go_Menu.php';
-//session_start();
-//if(!isset($_SESSION['user_id']))
-//{
-//    header('location:index.php');
-//}
+$state_code = $_SESSION['STATE_CODE'];
+$state_name = $_SESSION['STATE_NAME'];
 ?>
 
 <html>
@@ -23,6 +20,10 @@ require_once 'Go_Menu.php';
             <script type="text/javascript">
             $(function()
             {
+              $('#State').val("<?php echo $state_name ?>");
+              $('#State').prop('disabled', true);
+              $('#Pincode').val("<?php echo $_SESSION['PINCODE'] ?>");
+              $('#Pincode').prop('disabled', true);
               $("#Pincode").keypress(function (e) {
                 //if the letter is not digit then display error and don't type anything
                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -36,7 +37,7 @@ require_once 'Go_Menu.php';
               });
               $("#Shop_Mobile").keypress(function (e) {
                 //if the letter is not digit then display error and don't type anything
-                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                    //display error message
                    $('#mobile_err').empty();
                    $("#mobile_err").append('<span style="color:red;">enter digit only</span>');

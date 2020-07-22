@@ -1,18 +1,9 @@
-<!--<select id="Category_list" name="Category_list" class="form-control">
-<option value="Select" selected="selected">Select</option>
-<?php
-require_once "config.php";
-$sql = mysqli_query($con, "SELECT * From product_category_master");
-$row = mysqli_num_rows($sql);
-while ($row = mysqli_fetch_array($sql)){
-echo "<option value='". $row['category_id'] ."'>" .$row['category_name'] ."</option>" ;
-}
-?>
-</select>-->
+
 
 <?php
 require_once "config.php";
-
+$state_code = 'PB';
+$state_name = 'Punjab';
 ?>
 
 <html>
@@ -32,6 +23,8 @@ require_once "config.php";
             $('.show_GO').hide();
             $('.show_IU').hide();
            
+            $('#State').val("<?php echo $state_name ?>");
+            $('#State').prop('disabled', true);
             $("#usr_category").change(function(){
                     var optionValue = $("#usr_category").val();
                     //alert(optionValue);
@@ -236,17 +229,17 @@ require_once "config.php";
                         }
                     }
                 });
-                $("#GO_Pincode").keypress(function (e) {
-                //if the letter is not digit then display error and don't type anything
-                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                   //display error message
-                   $('#go_loc_err').empty();
-                   $("#go_loc_err").append('<span style="color:red;">enter digit only</span>');
-                          return false;
-               }
-               else
-               {$('#go_loc_err').empty();}
-              });
+//                $("#GO_Pincode").keypress(function (e) {
+//                
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+//                   //display error message
+//                   $('#go_loc_err').empty();
+//                   $("#go_loc_err").append('<span style="color:red;">enter digit only</span>');
+//                          return false;
+//               }
+//               else
+//               {$('#go_loc_err').empty();}
+//              });
               $("#GO_Mobile").keypress(function (e) {
                 //if the letter is not digit then display error and don't type anything
                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -286,7 +279,8 @@ require_once "config.php";
                             $('#go_loc_err').empty();
                             $('#go_loc_err').append('<span style="color:red;">Enter Pincode</span>');
                         }
-                        else if (GO_Pincode !== '' && GO_Pincode.length < 6)
+                        //else if (GO_Pincode !== '' && GO_Pincode.length < 6)
+                        else if (GO_Pincode === 'Select')
                         {
                             $('#go_loc_err').empty();
                             $('#go_loc_err').append('<span style="color:red;">Invalid Pincode</span>');   
@@ -391,7 +385,26 @@ require_once "config.php";
                         <tr>
                             <td>Nodal Incharge to which location<span class="error"> * </span></td>
                             <td>
-                                <input type="text" id="GO_Pincode" name="GO_Pincode" placeholder="enter Pincode" maxlength="6" class="form-control">
+                                <!--<input type="text" id="GO_Pincode" name="GO_Pincode" placeholder="enter Pincode" maxlength="6" class="form-control">-->
+                                <select id="GO_Pincode" name="GO_Pincode">
+                                    <option value="Select" selected="selected" >Select</option>
+                                    <?php
+                                    require_once "config.php";
+
+                                    $sql_pin = "SELECT * FROM pincode_master where state_code = '$st_code' order by pincode asc ";
+                                    $result_pin = mysqli_query($MyConnection, $sql_pin);
+
+                                     if (mysqli_num_rows($result_pin) > 0) 
+                                     {
+                                        while($row = mysqli_fetch_assoc($result_pin)) 
+                                        {
+                                            echo "<option value='".$row['pincode']."'>" . $row['pincode'] . "</option>";
+                                        }
+                                     } 
+                                     
+                                     mysqli_close($MyConnection);
+                                    ?>
+                              </select>
                             </td>
                             <td id="go_loc_err"></td>
                         </tr>
