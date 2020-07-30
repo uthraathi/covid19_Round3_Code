@@ -180,6 +180,16 @@ if(!isset($_SESSION['user_id']))
             </li>
         </ul>
     </li>
+     <li><a href=\"#\">Covid-19 <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
+        <ul>
+            <li>
+                <a href="Testing_Centers.php">Testing Centers</a>
+            </li>
+            <li>
+                <a href="Helpline_Number.php">Help-line Number</a>
+            </li>
+        </ul>
+    </li>
   <li><a href=\"#\">Personal Info <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
         <ul>
             <li>
