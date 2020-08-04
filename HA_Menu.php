@@ -124,61 +124,14 @@ if(!isset($_SESSION['user_id']))
     <body>
 <div id="navi">
     
-    <li>
-        <a href=\"#\">e-Shopping <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
-        
-        <ul>
-            <li>
-                  <a href="Product_Add.php">Product Add</a>
-            </li>
-            <li>
-                <a href="Prod_List.php">Product List</a>
-            </li>
-            <li>
-               <a href="Shop_Keepe_Reg.php">Shop Keeper Add</a>
-            </li>
-             <li>
-               <a href="Shop_Keepe_List.php">Shop Keeper List</a>
-            </li>
-        </ul>
-    </li>
-  <li>
-        <a href=\"#\">e-Ration Shop <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
-        <ul>
-            <li>
-                  <a href="RS_Add.php">Ration Shop Add</a>
-            </li>
-            <li>
-                <a href="Ration_Shop_List.php">Ration Shop List</a>
-            </li>
-            <li>
-               <a href="Ration_Product_Add.php">Ration Product Add</a>
-            </li>
-            <li>
-               <a href="Ration_Product_List.php">Ration Product List</a>
-            </li>
-        </ul>
-    </li>
-     <li><a href=\"#\">Volunteers <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
-        <ul>
-            <li>
-                <a href="Assign_Work_Volunteer.php">Assign Work</a>
-            </li>
-            <li>
-                <a href="Assigned_Work_Volunteer.php">List of Assigned Work</a>
-            </li>
-        </ul>
-    </li>
-    <li><a href="GO_Relief_Mtrl_His.php">Relief Material Collection</a>
-       
-    </li>
+
      <li><a href=\"#\">Covid-19 <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
         <ul>
             <li>
-                <a href="Hospital_Register.php">Hospital Registration</a>
+                <a href="addDoctors.php">Doctor Registration</a>
             </li>
             <li>
-                <a href="List_Registered_Hospital.php">List of Registered Hospital</a>
+                <a href="List_Registered_Doctors.php">List of Registered Doctor(s)</a>
             </li>
         </ul>
     </li>
@@ -191,7 +144,7 @@ if(!isset($_SESSION['user_id']))
             </tr>
             <tr>
                 <td style="color:greenyellow;font-weight:bold;">Category: </td>
-                <td><?php if ($_SESSION['user_category'] === "IU") echo "Individual User"; else if($_SESSION['user_category'] === "GO") echo "Government Official" ; else if($_SESSION['user_category'] === "RS") echo "Ration Shop" ; else echo "Shop Keeper"; ?></td>
+                <td><?php if ($_SESSION['user_category'] === "IU") echo "Individual User"; else if($_SESSION['user_category'] === "GO") echo "Government Official" ; else if($_SESSION['user_category'] === "RS") echo "Ration Shop" ;else if($_SESSION['user_category'] === "HA") echo "Hospital In-Charge" ; else if($_SESSION['user_category'] === "DR") echo "Doctor" ;else echo "Shop Keeper"; ?></td>
             </tr>
         </table>
 

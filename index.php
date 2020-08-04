@@ -73,6 +73,14 @@ require_once "config.php";
                                          {
                                          window.location.href="addproduct_RS.php";
                                          }
+                                         else if (usr_category === 'HA')
+                                         {
+                                         window.location.href="addDoctors.php";
+                                         }
+                                         else if (usr_category === 'DR')
+                                         {
+                                         window.location.href="DR_Service_Time.php";
+                                         }
                                          else
                                          {
                                              window.location.href="IU_Shop_by_Category.php";
@@ -116,6 +124,8 @@ require_once "config.php";
                                         <option value="GO">Government Official</option>
                                         <option value="SK">Shop Keeper</option>
                                         <option value="RS">Ration Shop</option>
+                                        <option value="HA">Hospital</option>
+                                        <option value="DR">Doctor</option>
                                     </select>
 
                             </td>

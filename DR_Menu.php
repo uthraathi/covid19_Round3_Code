@@ -191,7 +191,7 @@ if(!isset($_SESSION['user_id']))
             </tr>
             <tr>
                 <td style="color:greenyellow;font-weight:bold;">Category: </td>
-                <td><?php if ($_SESSION['user_category'] === "IU") echo "Individual User"; else if($_SESSION['user_category'] === "GO") echo "Government Official" ; else if($_SESSION['user_category'] === "RS") echo "Ration Shop" ; else echo "Shop Keeper"; ?></td>
+                <td><?php if ($_SESSION['user_category'] === "IU") echo "Individual User"; else if($_SESSION['user_category'] === "GO") echo "Government Official" ; else if($_SESSION['user_category'] === "RS") echo "Ration Shop" ;else if($_SESSION['user_category'] === "HA") echo "Hospital In-Charge" ; else if($_SESSION['user_category'] === "DR") echo "Doctor" ;else echo "Shop Keeper"; ?></td>
             </tr>
         </table>
 

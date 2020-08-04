@@ -1,34 +1,45 @@
 <?php
-
-require_once 'IU_Menu.php';
-require_once "config.php";
-$st_code = $_SESSION['STATE_CODE'];
-$st_name = $_SESSION['STATE_NAME'];
+require_once 'Go_Menu.php';
+//session_start();
+//if(!isset($_SESSION['user_id']))
+//{
+//    header('location:index.php');
+//}
+$PINCODE=$_SESSION['PINCODE'];
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>HELP-LINE NUMBER INTEGRATION</title>
+        <title>List of Registered Hospitals</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
         <style type="text/css">
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 50%; padding: 20px; }
+        .wrapper{ width: 100%; padding: 20px; }
         .error{color: #FF0000;}
         </style>
         
     </head>
     <body>
         <div class="wrapper" style="margin:0 auto;" >
-            <h2 style="color:#b5651d;"><?PHP echo strtoupper($st_name); ?> -> HELP-LINE NUMBER INTEGRATION</h2>
+            <h2 style="color:#b5651d;">List of Registered Hospitals</h2>
  
 
             <table class="table">
                 <tr style="background:yellowgreen;color:black;font-size:16px;font-weight:bold;">
                     <td>S.No</td>
-                    <td>District/ State</td>
-                    <td>24/7 Help-Line Number</td>
                     
-                   </tr>
+                    <td>Hospital ID</td>
+                    <td>Name</td>
+                    <td>In-Charge Name</td>
+                    <td>Mobile Number</td>
+                    <td>Email ID</td>
+                    
+                    <td>Registration Number</td>
+                    <td>Entry Date</td>
+                    <td>Address</td>
+                </tr>
+                
+                       
                 <?php
                 require_once "config.php";
                 if (isset($_GET['pageno'])) {
@@ -36,14 +47,14 @@ $st_name = $_SESSION['STATE_NAME'];
                 } else {
                     $pageno = 1;
                 }
-                $no_of_records_per_page = 9;
+                $no_of_records_per_page = 5;
                 $offset = ($pageno-1) * $no_of_records_per_page;
-                $total_pages_sql = "SELECT count(*) FROM helpline_number_master  where state_code = '$st_code'";
+                $total_pages_sql = "SELECT count(*) FROM hospital_registration where PINCODE = '$PINCODE'";
                 $result_sql = mysqli_query($MyConnection,$total_pages_sql);
                 $total_rows = mysqli_fetch_array($result_sql)[0];
                 $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                $sql = "SELECT * FROM helpline_number_master where state_code = '$st_code' order by DESCRIPTION asc LIMIT $offset,$no_of_records_per_page";
+                $sql = "SELECT * FROM hospital_registration where PINCODE = '$PINCODE' order by PINCODE,hospital_name asc LIMIT $offset,$no_of_records_per_page";
 
 
                  $result = mysqli_query($MyConnection, $sql);
@@ -55,8 +66,18 @@ $st_name = $_SESSION['STATE_NAME'];
                         $index++;
                         echo "<tr>";
                         echo "<td>". $index ."</td>";
-                        echo "<td>". $row['DESCRIPTION'] ."</td>";
-                        echo "<td>". $row['HELPLINE'] ."</td>";
+                       
+                        echo "<td>". $row['UNIQUE_ID'] ."</td>";
+                        echo "<td>". $row['hospital_name'] ."</td>";
+                        echo "<td>". $row['OWNER_NAME'] ."</td>";
+                        echo "<td>". $row['MOBILE_NUMBER'] ."</td>";
+                        echo "<td>". $row['EMAIL_ID'] ."</td>";
+                        
+                        
+                        echo "<td>". $row['REG_NUMBER'] ."</td>";
+                        echo "<td>". $row['ENTRY_DATE'] ."</td>";
+                        echo "<td>". $row['BUILD_NO'] .", ".$row['STREET'].", \n". $row['CITY'].", \n". $row['DISTRICT'].", \n". $row['STATE']." - \n". $row['PINCODE']."</td>";
+                        
                         echo "</tr>";
                     }
                         
@@ -66,7 +87,7 @@ $st_name = $_SESSION['STATE_NAME'];
                  mysqli_close($MyConnection);
                 ?>
                  <tr style="text-align:center;">
-                    <td colspan="10">
+                    <td colspan="12">
                     <ul class="pagination">
                         <li><a href="?pageno=1">First</a></li>
                         <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
@@ -78,7 +99,7 @@ $st_name = $_SESSION['STATE_NAME'];
                         <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
                     </ul>
                 </td>
-                </tr>                  
+                </tr>                
                         
             </table> 
      

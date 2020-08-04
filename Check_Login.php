@@ -20,6 +20,10 @@ else if ($category === 'RS')
 {
     $sql = "SELECT * FROM ration_shop_register WHERE RS_INC_ID  = '$username' and mobile_number= '$password' and STATE = '$st_name'";
 }
+else if ($category === 'HA')
+{
+    $sql = "SELECT * FROM hospital_registration WHERE UNIQUE_ID  = '$username' and MOBILE_NUMBER= '$password' and STATE = '$st_name'";
+}
 else
 {
     $sql = "SELECT * FROM shop_keeper_registration WHERE SK_UNIQUE_ID   = '$username' and  SHOP_MOBILE_NUMBER = '$password' and SHOP_STATE = '$st_name'";
@@ -52,6 +56,13 @@ else
         else if ($category === 'RS')
         {
             $_SESSION['User_Name']= $row['RS_INC_NAME'];
+            $_SESSION['PINCODE'] = $row['PINCODE'];
+            $_SESSION['FAMILY_TYPE'] = "";
+            
+        }
+        else if ($category === 'HA')
+        {
+            $_SESSION['User_Name']= $row['OWNER_NAME'];
             $_SESSION['PINCODE'] = $row['PINCODE'];
             $_SESSION['FAMILY_TYPE'] = "";
             
