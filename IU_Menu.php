@@ -188,6 +188,21 @@ if(!isset($_SESSION['user_id']))
             <li>
                 <a href="Helpline_Number.php">Help-line Number</a>
             </li>
+            <li>
+                <a href="Healthcare_Locations.php">Health care locations for COVID19</a>
+            </li>
+            <li>
+                <a href="DR_Book_Appointment.php">Doctor Appointment - Online Booking</a>
+            </li>
+            <li>
+                <a href="DR_Book_Appnt_Status.php">Doctor Appointment - Status</a>
+            </li>
+            <li>
+                <a href="HA_Bed_Availability.php">Hospital Admission - Request</a>
+            </li>
+            <li>
+                <a href="HA_Bed_Avail_Status.php">Hospital Admission - Status</a>
+            </li>
         </ul>
     </li>
   <li><a href=\"#\">Personal Info <img src="arrow-down.png" style="height:20px;width:20px;"/></a>
